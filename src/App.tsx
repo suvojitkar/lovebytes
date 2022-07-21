@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import PrimarySearchAppBar from "./Components/LbNav/LbNav";
+import { Home } from "./Pages/Home";
+import { useCart } from "./Providers/useCart";
+import { CartContext } from "./Contexts/App.context";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+
+  const { cartItem, addItemToCart, removeItemFromCart, cartCount } = useCart();
+
+  return <>
+    <BrowserRouter>
+      <CartContext.Provider value = {{cartItem, addItemToCart, removeItemFromCart, cartCount}}>
+        <PrimarySearchAppBar/>
+        <Routes>
+          <Route path="/" element={<Home/>}></Route>
+        </Routes>
+      </CartContext.Provider>
+    </BrowserRouter>
+  </>
 }
 
 export default App;
