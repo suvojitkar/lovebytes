@@ -1,13 +1,15 @@
 import { Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
-import { LbCartBtn } from '../LbCartBtn/LbCartBtn';
+import { LbCartBtn } from 'Components/LbCartBtn/LbCartBtn';
+import { LbCardProp } from './LbCard.interface';
 
-const LbCard = ({ id, name, description, image }: any) => {
+const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
 
   const itemProps = {
     id,
     name,
     description,
-    image
+    image,
+    price
   }
   return (
     <Card sx={{ maxWidth: 320 }} style={{position: "relative"}}>
@@ -23,9 +25,10 @@ const LbCard = ({ id, name, description, image }: any) => {
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description.length > 100 ? `${description.substring(0, 100)}...` : description}
+          <br /><br/>
+          <b>Rs. {price}</b>
         </Typography>
       </CardContent>
-      <br/>
       <CardActions>
         <LbCartBtn {...itemProps} />
       </CardActions>

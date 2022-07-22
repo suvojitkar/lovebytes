@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { LbCard } from "../Components";
-import { LbGridMenu } from "../Components/LbGridMenu/LbGridMenu.style"
-import { ListMenuService } from "../Services/ListMenu.service";
+import { LbCard, LbGridMenu } from "Components";
+import { ListMenuService } from "Services/ListMenu.service";
+import { menuType } from "./Home.interface";
 
 const Home = () => {
-    const [menu, setMenu] = useState<any>([]);
+    const [menu, setMenu] = useState<Array<menuType> | null>(null);
 
     const fetchMenu = async () => {
         const resp = await ListMenuService();

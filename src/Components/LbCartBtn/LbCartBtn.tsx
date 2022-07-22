@@ -1,34 +1,48 @@
 import { Button } from "@mui/material"
-import { useContext, useState } from "react";
-import { CartContext } from "../../Contexts/App.context";
-import { CartBtn } from "../LbUtil/LbUtil.style";
+import { useContext, useReducer } from "react";
+import { LbCardProp } from "Components/LbCard/LbCard.interface";
+import { FullBox } from "Components/LbUtil/LbUtil.style";
+import { CartContext } from "Providers/CartProvider";
+import { LbCartBtnReducer } from "./LbCartBtn.reducer";
+import { CartActions } from "Interfaces/CartAction.interface";
 
-const LbCartBtn = ({ id, name, description, image }: any) => {
+const LbCartBtn = ({ id, name, description, image, price }: LbCardProp) => {
     const { addItemToCart, removeItemFromCart } = useContext(CartContext);
-    const [qty, setQty] = useState<any>(0);
+
+    const { cartItem } = useContext(CartContext);
+    const isItemInCart: any = cartItem.find((cartMenu: any) => cartMenu.id === id);
+
+    const initialState = { qty: isItemInCart ? isItemInCart.qty : 0 };
+    const [state, dispatch] = useReducer(LbCartBtnReducer, initialState);
 
     const addItem = () => {
-        setQty(qty + 1)
-        addItemToCart({ id, name, description, image })
+        dispatch({type: CartActions.add});
+        addItemToCart({ id, name, description, image, price })
     }
 
     const remItem = () => {
-        setQty(qty - 1)
-        removeItemFromCart({ id, name, description, image })
+        dispatch({type: CartActions.delete});
+        removeItemFromCart({ id, name, description, image, price })
+    }
+
+    const remAllItem = () => {
+        dispatch({ type: CartActions.remove });
+        removeItemFromCart({ id, name, description, image, price }, true)
     }
 
     return <>{
-        qty === 0 ?
+        state.qty === 0 ?
             <Button variant="contained" onClick={addItem} style={{width: "100%"}}> ADD TO CART </Button> :
-            <CartBtn>
+            <FullBox>
                 <div>
                     <Button variant="contained" onClick={remItem}>-</Button>
-                    <span> {qty} </span>
+                    <span> {state.qty} </span>
                     <Button variant="contained" onClick={addItem}>+</Button>
                 </div>
-                <Button variant="contained" style={{backgroundColor: "red"}} onClick={(e) => setQty(0)}>Remove</Button>
-            </CartBtn>
-    }</>
+                <Button variant="contained" style={{backgroundColor: "red"}} onClick={remAllItem}>Remove</Button>
+            </FullBox>
+    }
+    </>
 }
 
 export { LbCartBtn };
