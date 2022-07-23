@@ -1,5 +1,7 @@
+import { Button } from "@mui/material";
 import { CartContext } from "Providers/CartProvider";
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 const LbTable = (props: any) => {
     const { cartItem } = useContext(CartContext);
@@ -32,7 +34,11 @@ const LbCartSummary = () => {
          <td>&#8377;{elem.price * elem.qty}</td>
     </tr>)
 
-    return <LbTable>{data}</LbTable>
+    return <>
+        <LbTable>{data}</LbTable>
+        <br />
+        {(cartItem.length > 0) && <Link to="/order"><Button variant="contained">ORDER NOW</Button></Link>}
+    </>
 }
 
 export { LbCartSummary };

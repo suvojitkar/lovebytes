@@ -26,7 +26,7 @@ const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
         <Typography variant="body2" color="text.secondary">
           {description.length > 100 ? `${description.substring(0, 100)}...` : description}
           <br /><br/>
-          <b>Rs. {price}</b>
+          <b>&#8377;{price}</b>
         </Typography>
       </CardContent>
       <CardActions>

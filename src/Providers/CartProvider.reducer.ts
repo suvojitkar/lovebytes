@@ -14,6 +14,9 @@ const CartProviderReducer = (state: any, action: any) => {
         case CartActions.remove:
             setDataInLocalStore(COUNT_CART_ITEMS_IN_LOCAL_STORAGE, state - action.removeQty)
             return state - action.removeQty
+        case CartActions.clear:
+            setDataInLocalStore(COUNT_CART_ITEMS_IN_LOCAL_STORAGE, 0)
+            return 0;
     }
 }
 

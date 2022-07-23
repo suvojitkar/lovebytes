@@ -60,7 +60,7 @@ const CartProvider = (props: { children: ReactNode }) => {
     }
 
     const clearCart = () => {
-        setCartItem(cartItemInitialState);
+        setCartItem([]);
         dispatchCount({ type: CartActions.clear });
     }
 
