@@ -37,7 +37,7 @@ const LbCartSummary = () => {
     return <>
         <LbTable>{data}</LbTable>
         <br />
-        {(cartItem.length > 0) && <Link to="/order"><Button variant="contained">ORDER NOW</Button></Link>}
+        {(cartItem.length > 0) && <Link to='#/order'><Button variant="contained">ORDER NOW</Button></Link>}
     </>
 }
 

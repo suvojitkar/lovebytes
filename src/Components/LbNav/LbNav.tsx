@@ -77,7 +77,7 @@ const LbNav = () => {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link to="/cart">
+      <Link to='#/cart'>
         <MenuItem>
           <IconButton size="large" aria-label="show 4 new mails" color="inherit">
             <Badge badgeContent={cartCount} color="error">
@@ -106,18 +106,18 @@ const LbNav = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Link to="/">
+          <Link to='#/'>
             <Typography
               variant="h6"
               noWrap
               component="div"
             >
-              Yummy!
+              <i>LoveBytes!</i>
             </Typography>
           </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <Link to="/cart">
+            <Link to='#/cart'>
               <IconButton
               size="large"
               aria-label="show 17 new notifications"
