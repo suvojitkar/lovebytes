@@ -1,6 +1,17 @@
+
 import { Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import { LbCartBtn } from 'Components/LbCartBtn/LbCartBtn';
+import styled from 'styled-components';
 import { LbCardProp } from './LbCard.interface';
+
+const LbCardContainer = styled.div`
+  transition: all .3s;
+  &:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  }
+`;
 
 const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
 
@@ -11,8 +22,11 @@ const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
     image,
     price
   }
+
+  const cardWidth = window.screen.width > 700 ? 320 : "100%";
   return (
-    <Card sx={{ maxWidth: 320 }} style={{position: "relative"}}>
+    <LbCardContainer>
+    <Card sx={{ maxWidth: cardWidth}} style={{position: "relative"}}>
       <CardMedia
         component="img"
         height="140"
@@ -33,6 +47,7 @@ const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
         <LbCartBtn {...itemProps} />
       </CardActions>
     </Card>
+    </LbCardContainer>
   );
 }
 
