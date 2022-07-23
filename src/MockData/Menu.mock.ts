@@ -1,7 +1,7 @@
 const mockMenu = [{
     id: 1,
     name: "Murg Tikka Masala (Red)",
-    type: "veg",
+    type: "non-veg",
     cuisine: "south indian",
     availability: ['breakfast', 'lunch'],
     price: 300,
@@ -23,7 +23,7 @@ const mockMenu = [{
 }, {
     id: 3,
     name: "Chicken Hakka Noodles",
-    type: "veg",
+    type: "non-veg",
     cuisine: "south indian",
     availability: ['breakfast', 'lunch'],
     price: 240,
@@ -56,7 +56,7 @@ const mockMenu = [{
 }, {
     id: 6,
     name: "Tandoori Chicken(half)",
-    type: "veg",
+    type: "non-veg",
     cuisine: "south indian",
     availability: ['breakfast', 'lunch'],
     price: 360,
@@ -89,7 +89,7 @@ const mockMenu = [{
 }, {
     id: 9,
     name: "Murg Tangdi Kebab",
-    type: "veg",
+    type: "non-veg",
     cuisine: "south indian",
     availability: ['breakfast', 'lunch'],
     price: 330,
