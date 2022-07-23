@@ -1,32 +1,27 @@
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Badge from '@mui/material/Badge';
-import MenuItem from '@mui/material/MenuItem';
-import Menu from '@mui/material/Menu';
-import AccountCircle from '@mui/icons-material/AccountCircle';
+import { useContext, useState, MouseEvent } from 'react';
+import {
+  AppBar, Box, Toolbar, IconButton, Typography, Badge, MenuItem,
+  Menu 
+} from '@mui/material';
+import { AccountCircle} from '@mui/icons-material';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useContext } from 'react';
-import { CartContext } from '../../Contexts/App.context';
+import { CartContext } from 'Providers/CartProvider';
+import { Link } from 'react-router-dom';
 
 
 
-export default function PrimarySearchAppBar() {
+const LbNav = () => {
   const { cartCount } = useContext(CartContext);
-  console.log("cartCount", cartCount);
   
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-    React.useState<null | HTMLElement>(null);
+    useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleProfileMenuOpen = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -39,7 +34,7 @@ export default function PrimarySearchAppBar() {
     handleMobileMenuClose();
   };
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleMobileMenuOpen = (event: MouseEvent<HTMLElement>) => {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
@@ -82,14 +77,16 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={cartCount} color="error">
-            <ShoppingCartIcon />
-          </Badge>
-        </IconButton>
-        <p>Cart</p>
-      </MenuItem>
+      <Link to="/cart">
+        <MenuItem>
+          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
+            <Badge badgeContent={cartCount} color="error">
+              <ShoppingCartIcon />
+            </Badge>
+          </IconButton>
+          <p>Cart</p>
+        </MenuItem>
+      </Link>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
@@ -109,16 +106,19 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="fixed">
         <Toolbar>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-          >
-            Yummy!
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+            >
+              Yummy!
+            </Typography>
+          </Link>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton
+            <Link to="/cart">
+              <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
@@ -126,7 +126,8 @@ export default function PrimarySearchAppBar() {
               <Badge badgeContent={cartCount} color="error">
                 <ShoppingCartIcon />
               </Badge>
-            </IconButton>
+              </IconButton>
+            </Link>
             <IconButton
               size="large"
               edge="end"
@@ -158,3 +159,5 @@ export default function PrimarySearchAppBar() {
     </Box>
   );
 }
+
+export { LbNav };

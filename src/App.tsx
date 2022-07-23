@@ -1,23 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PrimarySearchAppBar from "./Components/LbNav/LbNav";
-import { Home } from "./Pages/Home";
-import { useCart } from "./Providers/useCart";
-import { CartContext } from "./Contexts/App.context";
+import { LbNav } from "Components";
+import { Home } from "Pages/Home/Home";
+import { CartProvider } from "Providers/CartProvider";
+import { Cart } from "Pages/Cart/Cart";
 
 const App = () => {
-
-  const { cartItem, addItemToCart, removeItemFromCart, cartCount } = useCart();
-
-  return <>
+  return (
     <BrowserRouter>
-      <CartContext.Provider value = {{cartItem, addItemToCart, removeItemFromCart, cartCount}}>
-        <PrimarySearchAppBar/>
+      <CartProvider>
+        <LbNav/>
         <Routes>
-          <Route path="/" element={<Home/>}></Route>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/cart" element={<Cart/>}></Route>
         </Routes>
-      </CartContext.Provider>
+      </CartProvider>
     </BrowserRouter>
-  </>
+  )
 }
 
 export default App;
