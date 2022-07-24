@@ -1,15 +1,13 @@
 import { FormControlLabel, FormGroup, Switch } from "@mui/material";
-import { toggleContext } from "App";
-import { useContext } from "react";
+import { memo } from "react";
 
-const LbToggle = () => {
-  const { checked, setChecked } = useContext(toggleContext);
+const LbToggle = memo((props: any) => {
   return <FormGroup>
     <FormControlLabel
-      control={<Switch color="success" checked={checked} onChange={(e)=>setChecked(e.target.checked)}/>}
+      control={<Switch color="success" checked={props.isChecked} onChange={(e)=>props.updateToggleCheck(e.target.checked)}/>}
       label="VEG"
     />
     </FormGroup>
-};
+});
 
 export { LbToggle };

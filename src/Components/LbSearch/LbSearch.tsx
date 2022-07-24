@@ -1,11 +1,8 @@
 import { TextField } from "@mui/material";
-import { searchContext } from "App";
-import { useContext } from "react";
+import { memo } from "react";
 
-const LbSearch = () => {
-    const { setSearchText } = useContext(searchContext);
-    
-    return <TextField id="outlined-basic" label="What would you like to have today?" variant="outlined" style={{ width: "100%" }} onChange={(e)=>{setSearchText(e.target.value)}} />
-}
+const LbSearch = memo((props: any) => {
+    return <TextField id="outlined-basic" label="What would you like to have today?" variant="outlined" style={{ width: "100%" }} onChange={(e) => { props.setSearchFn(e.target.value) }} />
+});
 
 export { LbSearch };
