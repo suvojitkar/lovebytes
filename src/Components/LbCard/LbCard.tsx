@@ -11,6 +11,14 @@ const LbCardContainer = styled.div`
     cursor: pointer;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
   }
+  @media screen and (max-width: 700px) {
+    transition: none;
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      cursor: none;
+    }
+  }
 `;
 
 const LbCard = ({ id, name, description, price, image }: LbCardProp) => {
