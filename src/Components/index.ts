@@ -5,5 +5,6 @@ import { LbNav } from "./LbNav/LbNav";
 import { FullBox } from "./LbUtil/LbUtil.style";
 import { LbSearch } from "./LbSearch/LbSearch";
 import { LbToggle } from "./LbToggle/LbToggle";
+import { LbOrder } from "./LbOrder/LbOrder";
 
-export {LbCard, LbCartBtn, LbGridMenu, LbNav, FullBox, LbSearch, LbToggle}
+export {LbCard, LbCartBtn, LbGridMenu, LbNav, FullBox, LbSearch, LbToggle, LbOrder}
