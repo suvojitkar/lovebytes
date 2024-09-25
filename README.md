@@ -11,9 +11,6 @@ Project was created with : `npx create-react-app lovebytes --template typescript
 start in localhost: `npm start`
 generate build folder: `npm run build`
 
-
-Note: The project is for learning purpose and is in progress
-
 ## Features
 - List menu
 - Add items to cart
